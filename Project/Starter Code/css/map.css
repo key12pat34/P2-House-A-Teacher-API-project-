@@ -11,3 +11,10 @@ body {
     height: 100%;
   }
   
+  #map{
+    margin-top:10;
+    margin-left:100;
+    margin-top:10;
+    margin-right:100;
+    padding:10;
+  }
