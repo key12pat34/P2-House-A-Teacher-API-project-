@@ -9,14 +9,13 @@ cur.execute("""
     "systemid" int   NOT NULL,
     "type" VARCHAR   NOT NULL,
     "phone" VARCHAR   NOT NULL,
-    "enrollment" int   NOT NULL,
-    "teachercount" int   NOT NULL,
-    "averageexperience" int NOT NULL,
-    "% of Teachers <1 of experience" int   NOT NULL,
-    "% of teachers <10 years of experience" int   NOT NULL,
-    "% of teachers 11-20 years of experience" int   NOT NULL,
-    "% of teachers 21-30 years of experience" int   NOT NULL,
-    "% of teachers 30+ years of experience" int   NOT NULL,
+    "enrollment" FLOAT   NOT NULL,
+    "teachercount" FLOAT   NOT NULL,
+    "% of Teachers <1 of experience" FLOAT   NOT NULL,
+    "% of teachers <10 years of experience" FLOAT   NOT NULL,
+    "% of teachers 11-20 years of experience" FLOAT   NOT NULL,
+    "% of teachers 21-30 years of experience" FLOAT   NOT NULL,
+    "% of teachers 30+ years of experience" FLOAT   NOT NULL,
     CONSTRAINT "pk_schooltable" PRIMARY KEY ( "_id" )
     )""")
 cur.execute("""
@@ -36,8 +35,8 @@ cur.execute(
     """
     CREATE TABLE "location" (
     "_id" int   NOT NULL UNIQUE,
-    "longitude" int   NOT NULL,
-    "latitude" int   NOT NULL,
+    "longitude" FLOAT   NOT NULL,
+    "latitude" FLOAT   NOT NULL,
     "street" VARCHAR   NOT NULL,
     "city" VARCHAR   NOT NULL,
     "state" VARCHAR   NOT NULL,
@@ -70,5 +69,11 @@ with open('../static/systemtable.csv', 'r') as f:
 with open('../static/schooltable.csv', 'r') as f:
     next(f) # Skip the header row.
     cur.copy_from(f, 'schooltable', sep=',')
+with open('../static/printable.csv', 'r') as f:
+    next(f) # Skip the header row.
+    cur.copy_from(f, 'principal', sep=',')
+with open('../static/locationtable.csv', 'r') as f:
+    next(f) # Skip the header row.
+    cur.copy_from(f, 'location', sep=',')        
 
 conn.commit()
