@@ -3,7 +3,7 @@ import csv
 conn = psycopg2.connect("host=ec2-54-205-187-125.compute-1.amazonaws.com password=2a00951144d14d957fe21c02613f65b2083e6f64f7cc32c28d784c5e8b8960dc dbname=d8uhbccr3c2pvb user=bwrtaugijyfgyd")
 cur = conn.cursor()
 cur.execute("""
-    CREATE TABLE "schooltable" (
+    CREATE TABLE IF NOT EXISTS "schooltable" (
     "_id" int   NOT NULL UNIQUE,
     "name" VARCHAR   NOT NULL,
     "systemid" int   NOT NULL,
@@ -19,7 +19,7 @@ cur.execute("""
     CONSTRAINT "pk_schooltable" PRIMARY KEY ( "_id" )
     )""")
 cur.execute("""
-    CREATE TABLE "principal" (
+    CREATE TABLE IF NOT EXISTS "principal" (
     "_id" int   NOT NULL UNIQUE,
     "name" VARCHAR   NOT NULL,
     "email" VARCHAR   NOT NULL,
@@ -27,13 +27,13 @@ cur.execute("""
         )""")
 cur.execute(
     """
-    CREATE TABLE "system" (
+    CREATE TABLE IF NOT EXISTS "system" (
     "systemid" int   NOT NULL UNIQUE,
     "School System Name" VARCHAR   NOT NULL
     )""")
 cur.execute(
     """
-    CREATE TABLE "location" (
+    CREATE TABLE IF NOT EXISTS "location" (
     "_id" int   NOT NULL UNIQUE,
     "longitude" FLOAT   NOT NULL,
     "latitude" FLOAT   NOT NULL,
@@ -44,24 +44,24 @@ cur.execute(
     CONSTRAINT "pk_location" PRIMARY KEY (
         "_id"
      ))""")
-cur.execute(
-    """
-    ALTER TABLE "principal" ADD CONSTRAINT "fk_principal__id" FOREIGN KEY("_id")
-    REFERENCES "schooltable" ("_id");
-    """
-)
-cur.execute(
-    """
-    ALTER TABLE "schooltable" ADD CONSTRAINT "fk_system_systemid" FOREIGN KEY("systemid")
-    REFERENCES "system" ("systemid");
-    """
-)
-cur.execute(
-    """
-    ALTER TABLE "location" ADD CONSTRAINT "fk_location__id" FOREIGN KEY("_id")
-    REFERENCES "schooltable" ("_id");
-    """
-)
+# cur.execute(
+#     """
+#     ALTER TABLE "principal" ADD CONSTRAINT "fk_principal__id" FOREIGN KEY("_id")
+#     REFERENCES "schooltable" ("_id");
+#     """
+# )
+# cur.execute(
+#     """
+#     ALTER TABLE "schooltable" ADD CONSTRAINT "fk_system_systemid" FOREIGN KEY("systemid")
+#     REFERENCES "system" ("systemid");
+#     """
+# )
+# cur.execute(
+#     """
+#     ALTER TABLE "location" ADD CONSTRAINT "fk_location__id" FOREIGN KEY("_id")
+#     REFERENCES "schooltable" ("_id");
+#     """
+# )
 conn.commit()
 with open('../static/systemtable.csv', 'r') as f:
     next(f) # Skip the header row.
