@@ -39,7 +39,6 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">Filter Search</div>
                                     <div class="panel-body">
-                                    <form>
                                         <div class="form-group">
                                             <ul class="list-group" id="filters">
                                                 <li class="filter list-group-item">
@@ -55,13 +54,28 @@
                                                 <input class="form-control" id="minbath" type="text" placeholder="1">
                                                 <label for="shape">Enter a Minimum Number of Bedrooms</label>
                                                 <input class="form-control" id="minbed" type="text" placeholder="1">
-                                                <!-- <label for="shape">Sort Results: relevance / newest / price_low / price_high</label>
-                                                <input class="form-control" id="sort" type="text" placeholder="relevance|newest|price_low|price_high"> -->
+                                                <label for="shape">Sort Results:</label>
+                                                <input class="form-control" id="sort" type="radio" value="relevance">
+                                                <label for="relevance">Relevance</label>
+                                                <input class="form-control" id="sort" type="radio" value="newest">
+                                                <label for="relevance">Newest</label>
+                                                <input class="form-control" id="sort" type="radio" value="price_low">
+                                                <label for="relevance">Lowest Price</label>
+                                                <input class="form-control" id="sort" type="radio" value="price_high">
+                                                <label for="relevance">Highest Price</label>
+                                                <label for="shape">School Types:</label>
+                                                <input class="form-control" id="sort" type="checkbox" value="Highschool">
+                                                <label for="relevance">Highs chool</label>
+                                                <input class="form-control" id="sort" type="checkbox" value="Middleschool">
+                                                <label for="relevance">Middle school</label>
+                                                <input class="form-control" id="sort" type="checkbox" value="Elementaryschool">
+                                                <label for="relevance">Elementary School</label>
+                                                <input class="form-control" id="sort" type="checkbox" value="k12">
+                                                <label for="relevance">K12</label>
                                                 </li>
                                             </ul>
                                         </div>
                                         <button id="filter-btn" type="button" class="btn btn-default">Filter Homes</button>
-                                    </form>
                                     </div>
                                 </div>
                             </div>

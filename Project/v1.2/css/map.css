@@ -5,43 +5,28 @@ body {
 }
 
 /* Adding styles to the aside and filter form */
-.ufo-form {
-  margin-top: 50px;
-}
-
-.filters .panel-body {
-  padding: 0;
-}
-
-.filters {
-  margin-top: 10px;
-}
-
-select {
-  display: block;
+input[type=text] {
   width: 100%;
-  padding: 8px;
-  color: #8e979f;
-  outline: none;
 }
 
-#table-area th {
+input[type=checkbox] {
+  transform: scale(1);
+}
+
+input[type=radio] {
+  transform: scale(1);
+}
+
+.button {
   text-align: center;
 }
 
-#table-area th:first-child,
-#table-area th:nth-child(2),
-#table-area th:nth-child(6) {
-  min-width: 70px;
+#form {
+  width: 50%;
+  text-align: center;
 }
 
-.loader {
-  margin-top: 50px;
-}
-
-.margin-top-50 {
-  margin-top: 50px;
-}
+.buttonHolder{ text-align: center; }
 
 /* set map, body, and html to 100% of the screen size */
 #map,

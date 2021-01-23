@@ -4,39 +4,39 @@
 
 
 // // Step 1
-// let map = createMap();
-// addBaseLayer(map);
-// // createBorough(map);
+let map = createMap();
+addBaseLayer(map);
+// createBorough(map);
 
 
-// function createMap() {
-//     // Creating map object
-//     let map = L.map("map", {
-//       center: [33.776108, -84.397530],
-//       zoom: 15,
-//     });
-//     return map;
-// };
+function createMap() {
+    // Creating map object
+    let map = L.map("map", {
+      center: [33.776108, -84.397530],
+      zoom: 15,
+    });
+    return map;
+};
 
-// // Step 2
-// function addBaseLayer(map) {
-//     let baseLayer = L.tileLayer(
-//       "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
-//       {
-//         attribution:
-//           "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
-//         tileSize: 512,
-//         maxZoom: 18,
-//         zoomOffset: -1,
-//         id: "mapbox/streets-v11",
-//         accessToken: API_KEY,
-//       }
-//     );
-//     baseLayer.addTo(map);
-// };
+// Step 2
+function addBaseLayer(map) {
+    let baseLayer = L.tileLayer(
+      "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
+      {
+        attribution:
+          "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
+        tileSize: 512,
+        maxZoom: 18,
+        zoomOffset: -1,
+        id: "mapbox/streets-v11",
+        accessToken: API_KEY,
+      }
+    );
+    baseLayer.addTo(map);
+};
 
 
-// // Step 3
+// Step 3
 // function createBorough(map){
 //     let link = "../assets/data/nyc.geojson";
 
@@ -208,7 +208,6 @@ var button = d3.select("#filter-btn");
 button.on("click", runEnter);
 
 function runEnter() {
-  d3.event.preventDefault();
 
   let selectedcity = d3.select("#city").property("value")
   let limit = d3.select("#limit").property("value")
@@ -234,7 +233,21 @@ function runEnter() {
   };
 
   $.ajax(settings).done(function (response) {
-    console.log(response);
+    let querydata = [response]
+    console.log(querydata)
+    for (var i = 0; i < querydata.length; i++) {
+      let lat = querydata[0].properties[i].address.lat
+      let lng = querydata[0].properties[i].address.lon
+      let location = [lat, lng]
+      L.marker(location)
+      // .bindPopup("<h1>" + querydata[0][properties][i][address] + "</h1> <hr> <h3>City: " + querydata[i].SchoolCity + "</h3>")
+      .addTo(map)
+    };
   });
 
 };
+
+let queryaddress = querydata[0][properties][i][address]
+let queryprice = querydata[0][properties][i].price
+let querybath = querydata[0][properties][i].baths
+let querybed = querydata[0][properties][i].beds
