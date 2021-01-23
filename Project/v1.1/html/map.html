@@ -30,10 +30,46 @@
         <p>Use the map below to select houses for sale and nearby school information.</p>
 
         <!-- The div where we will inject our map and form -->
-        <!-- <div id="mapandform"> -->
-            <div id ="map"></div>
-            <div id ="form"></div>
-        <!-- </div> -->
+    
+        <div id ="form">
+            <div class="container">
+                <div class="row margin-top-50">
+                    <div class="col-md-2">
+                        <aside class="filters">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Filter Search</div>
+                                    <div class="panel-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <ul class="list-group" id="filters">
+                                                <li class="filter list-group-item">
+                                                <label for="limit">Max Number of Results</label>
+                                                <input class="form-control" id="limit" type="text" placeholder="100">
+                                                <label for="city">Enter a City in Georgia</label>
+                                                <input class="form-control" id="city" type="text" placeholder="Atlanta">
+                                                <label for="state">Enter a Max Price</label>
+                                                <input class="form-control" id="maxprice" type="text" placeholder="300000">
+                                                <label for="state">Enter a Max Age of Home</label>
+                                                <input class="form-control" id="maxage" type="text" placeholder="10">
+                                                <label for="country">Enter a Minimum Number of Bathrooms</label>
+                                                <input class="form-control" id="minbath" type="text" placeholder="1">
+                                                <label for="shape">Enter a Minimum Number of Bedrooms</label>
+                                                <input class="form-control" id="minbed" type="text" placeholder="1">
+                                                <!-- <label for="shape">Sort Results: relevance / newest / price_low / price_high</label>
+                                                <input class="form-control" id="sort" type="text" placeholder="relevance|newest|price_low|price_high"> -->
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <button id="filter-btn" type="button" class="btn btn-default">Filter Homes</button>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Leaflet JS -->
         <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
