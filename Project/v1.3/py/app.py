@@ -1,10 +1,6 @@
 import psycopg2
 import csv
-<<<<<<< HEAD
 conn = psycopg2.connect("host=ec2-54-205-187-125.compute-1.amazonaws.com password=2a00951144d14d957fe21c02613f65b2083e6f64f7cc32c28d784c5e8b8960dc dbname=d8uhbccr3c2pvb user=bwrtaugijyfgyd")
-=======
-conn = psycopg2.connect("host=localhost password=Sarah5504 dbname=HouseATeacher user=postgres")
->>>>>>> a5ad9ceaf40eee6adc702c34a3081a3ccb743aa0
 cur = conn.cursor()
 cur.execute("""
     CREATE TABLE "schooltable" (
