@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>House-A-Teacher Map</title>
+      
+        <!-- Leaflet CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+          crossorigin="" />
+        
+        <!-- d3 JavaScript -->
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+        <!-- Our CSS -->
+        <link rel="stylesheet" type="text/css" href="../css/map.css">
+    </head>
+
+    <body>
+        <!-- Navigation bar -->
+        <div id="nav-placeholder"></div>
+        <script src="//code.jquery.com/jquery.min.js"></script>
+        <script>$.get("navbar.html", function(data){$("#nav-placeholder").replaceWith(data);});</script>
+        
+        <h1>Interactive Map</h1>
+        <p>Use the map below to select houses for sale and nearby school information.</p>
+
+        <!-- The div where we will inject our map and form -->
+    
+        <div id ="form">
+            <div class="container">
+                <div class="row margin-top-50">
+                    <div class="col-md-2">
+                        <aside class="filters">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Filter Search</div>
+                                    <div class="panel-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <ul class="list-group" id="filters">
+                                                <li class="filter list-group-item">
+                                                <label for="limit">Max Number of Results</label>
+                                                <input class="form-control" id="limit" type="text" placeholder="100">
+                                                <label for="city">Enter a City in Georgia</label>
+                                                <input class="form-control" id="city" type="text" placeholder="Atlanta">
+                                                <label for="state">Enter a Max Price</label>
+                                                <input class="form-control" id="maxprice" type="text" placeholder="300000">
+                                                <label for="state">Enter a Max Age of Home</label>
+                                                <input class="form-control" id="maxage" type="text" placeholder="10">
+                                                <label for="country">Enter a Minimum Number of Bathrooms</label>
+                                                <input class="form-control" id="minbath" type="text" placeholder="1">
+                                                <label for="shape">Enter a Minimum Number of Bedrooms</label>
+                                                <input class="form-control" id="minbed" type="text" placeholder="1">
+                                                <!-- <label for="shape">Sort Results: relevance / newest / price_low / price_high</label>
+                                                <input class="form-control" id="sort" type="text" placeholder="relevance|newest|price_low|price_high"> -->
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <button id="filter-btn" type="button" class="btn btn-default">Filter Homes</button>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaflet JS -->
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+            crossorigin=""></script>
+
+        <!-- API key -->
+        <script type="text/javascript" src="../js/config.js"></script>
+        <!-- JS -->
+        <script type="text/javascript" src="../js/map.js"></script>
+
+        <!-- Google drawing function -->
+        <!-- ####################REMOVE API BEFORE SUBMISSION api is between "="" and "&"" -->
+        <script defer
+           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBziBa1em_bBCXGyYMJwelg4R-GnyMjgHE&libraries=drawing&callback=initMap">
+        </script>
+
+
+   
+    </body>
+
+</html>
