@@ -234,15 +234,27 @@ function runEnter() {
 
   $.ajax(settings).done(function (response) {
     let querydata = [response]
+    let coordinates = []
     console.log(querydata)
-    for (var i = 0; i < querydata.length; i++) {
-      let lat = querydata[0].properties[i].address.lat
-      let lng = querydata[0].properties[i].address.lon
+    var propertyquery = querydata[0].properties
+    for (var i = 0; i < propertyquery.length; i++) {
+      var property = propertyquery[i]
+      let lat = property.address.lat
+      let lng = property.address.lon
       let location = [lat, lng]
+      let bedcount = property.beds
+      let bathcount = property.baths
+      let pricecount = property.price
+      let weburl = property.rdc_web_url
+      let street = property.address.line
+      let city = property.address.city
+      let state = property.address.state
+      let zip = property.address.postal_code
+      coordinates.push(location)
       L.marker(location)
-      // .bindPopup("<h1>" + querydata[0][properties][i][address] + "</h1> <hr> <h3>City: " + querydata[i].SchoolCity + "</h3>")
-      .addTo(map)
-    };
+      .bindPopup("<h1>" + street + "</h1> <hr> <h3>" + city + "," + state + " " + zip +"</h3> <br> <h4>Beds: " + bedcount + "<br>Baths: " + bathcount + "<br>Price: " + pricecount + '<br><a href="' + weburl + '">See on Realtor.com</a>')
+      .addTo(map);
+    }
   });
 
 };
