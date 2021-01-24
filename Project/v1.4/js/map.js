@@ -204,27 +204,32 @@ function addBaseLayer(map) {
 
 // Realtor API Query
 // Realtor API jQuery Code provided code: https://rapidapi.com/apidojo/api/realtor?endpoint=apiendpoint_e259775d-d98e-479f-8440-206d6d4fa892   
+
+//Set up the Filter Button
 var button = d3.select("#filter-btn");
 button.on("click", runEnter);
 
+//Start Filter Function
 function runEnter() {
-
+//Assign variables based on the filter form
   let selectedcity = d3.select("#city").property("value")
   let limit = d3.select("#limit").property("value")
   let minbed = d3.select("#minbed").property("value")
+  // Use this once we have the sort radios figured out
   // let sort = d3.select("#sort")
   let minbath = d3.select("#minbath").property("value")
   let maxprice = d3.select("#maxprice").property("value")
   let maxage = d3.select("#maxage").property("value")
 
-  console.log(selectedcity)
-
+//Load Realtor.com API with Filter variables assigned in the call
   const settings = {
     "async": true,
     "crossDomain": true,
     // Use this URL when we have the Sort Drop Down/Radial Buttons figured out
     // "url": `https://realtor.p.rapidapi.com/properties/v2/list-for-sale?city=${selectedcity}&limit=${limit}&offset=0&state_code=GA&beds_min=${minbed}&sort=${sort}&baths_min=${minbath}&price_max=${maxprice}&age_max=${maxage}`,
-    "url": `https://realtor.p.rapidapi.com/properties/v2/list-for-sale?city=${selectedcity}&limit=${limit}&offset=0&state_code=GA&beds_min=${minbed}&sort=relevance&baths_min=${minbath}&price_max=${maxprice}&age_max=${maxage}`,
+    "url": `https://realtor.p.rapidapi.com/properties/v2/list-for-sale?city=
+            ${selectedcity}&limit=${limit}&offset=0&state_code=GA&beds_min=
+            ${minbed}&sort=relevance&baths_min=${minbath}&price_max=${maxprice}&age_max=${maxage}`,
     "method": "GET",
     "headers": {
       "x-rapidapi-key": "a32cef4e7fmshe42c5a1bfdbce17p135b01jsn21abc1df2bea",
@@ -232,13 +237,14 @@ function runEnter() {
     }
   };
 
+//Process Realtor.com API through for loop and append listings to map markers
   $.ajax(settings).done(function (response) {
     let querydata = [response]
-    let coordinates = []
-    console.log(querydata)
     var propertyquery = querydata[0].properties
+//Start Loop, set max length based on number of properties returned in search
     for (var i = 0; i < propertyquery.length; i++) {
       var property = propertyquery[i]
+//Define variables on each property
       let lat = property.address.lat
       let lng = property.address.lon
       let location = [lat, lng]
@@ -250,16 +256,12 @@ function runEnter() {
       let city = property.address.city
       let state = property.address.state
       let zip = property.address.postal_code
-      coordinates.push(location)
+//Append coordinates to map and assign property variables in the pop up
       L.marker(location)
-      .bindPopup("<h1>" + street + "</h1> <hr> <h3>" + city + "," + state + " " + zip +"</h3> <br> <h4>Beds: " + bedcount + "<br>Baths: " + bathcount + "<br>Price: " + pricecount + '<br><a href="' + weburl + '">See on Realtor.com</a>')
+      .bindPopup("<h1>" + street + "</h1> <hr> <h3>" + city + "," + state + " " + zip + 
+                  "</h3> <br> <h4>Beds: " + bedcount + "<br>Baths: " + bathcount + 
+                  "<br>Price: " + pricecount + '<br><a href="' + weburl + '">See on Realtor.com</a>')
       .addTo(map);
     }
   });
-
 };
-
-let queryaddress = querydata[0][properties][i][address]
-let queryprice = querydata[0][properties][i].price
-let querybath = querydata[0][properties][i].baths
-let querybed = querydata[0][properties][i].beds
