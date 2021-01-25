@@ -1,4 +1,4 @@
-﻿SystemID,SystemName
+System_ID,System_Name
 601,Appling County
 602,Atkinson County
 603,Bacon County
@@ -178,7 +178,7 @@
 7820121,State Charter Schools- Utopian Academy for the Arts Charter School
 7820212,State Charter Schools- Cherokee Charter Academy
 7820412,State Charter Schools- Georgia Connections Academy
-7820612,"State Charter Schools- Ivy Preparatory Academy, Inc"
+7820612,State Charter Schools- Ivy Preparatory Academy Inc
 7820613,State Charter Schools- Foothills Charter High School (Central Office - Athens)
 7820614,State Charter Schools- International Charter School of Atlanta
 7820615,State Charter Schools- Scintilla Charter Academy
@@ -201,10 +201,6 @@
 7830619,State Charter Schools II- International Academy of Smyrna
 7830620,State Charter Schools II- International Charter Academy of Georgia
 7830621,State Charter Schools II- SLAM Academy of Atlanta
-7830623,State Charter Schools II- Academy For Classical Education
-7830624,State Charter Schools II- Spring Creek Charter Academy
-7830628,State Charter Schools II- Ethos Classical Charter School
-7830630,State Charter Schools II- Baconton Community Charter School
 784,Pelham City
 785,Rome City
 786,Social Circle City
@@ -213,4 +209,3 @@
 792,Valdosta City
 793,Vidalia City
 799,State Schools
-891,Department of Juvenile Justice
