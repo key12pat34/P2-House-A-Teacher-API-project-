@@ -265,3 +265,16 @@ function runEnter() {
     }
   });
 };
+
+// create markers for schools
+d3.json("http://127.0.0.1:5000/data", function(data) {
+  for (var i = 0; i < data.length; i++) {
+    let lat = data[i][1]
+    let lng = data[i][2]
+    let location = [lat, lng]
+    console.log(location)
+    L.marker(location)
+    // .bindPopup("<h1>" + data[i][0] + "</h1> <hr> <h3>City: " + data[i][4] + "</h3>")
+    .addTo(map)
+  }
+})
