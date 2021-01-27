@@ -9,15 +9,31 @@ from flask import (
     redirect)
 import psycopg2
 import sys
+import sqlalchemy
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.orm import Session
+from sqlalchemy import create_engine, func
+import numpy as np
+
+#################################################
+# Database Setup
+#################################################
+engine = create_engine("postgres://bwrtaugijyfgyd:2a00951144d14d957fe21c02613f65b2083e6f64f7cc32c28d784c5e8b8960dc@ec2-54-205-187-125.compute-1.amazonaws.com:5432/d8uhbccr3c2pvb")
+
+# reflect an existing database into a new model
+Base = automap_base()
+# reflect the tables
+Base.prepare(engine, reflect=True)
+
+# Save reference to the table
+School = Base.classes.schooltable
+# System = Base.classes.system
+# Location = Base.classes.location
 
 #################################################
 # Flask Setup
 #################################################
 app = Flask(__name__)
-
-#################################################
-# Database Setup
-#################################################
 
 # from flask_sqlalchemy import SQLAlchemy
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or "postgres://bwrtaugijyfgyd:2a00951144d14d957fe21c02613f65b2083e6f64f7cc32c28d784c5e8b8960dc@ec2-54-205-187-125.compute-1.amazonaws.com:5432/d8uhbccr3c2pvb"
@@ -53,13 +69,35 @@ def map():
 
 #     return render_template("form.html")
 
+@app.route("/api/location")
+def location():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
 
-@app.route('/data')
-def send_data():
-    con = psycopg2.connect("host='ec2-54-205-187-125.compute-1.amazonaws.com' dbname='d8uhbccr3c2pvb' user='bwrtaugijyfgyd' password='2a00951144d14d957fe21c02613f65b2083e6f64f7cc32c28d784c5e8b8960dc'")  
-    cur = con.cursor()
-    cur.execute("""select * from location""")
-    results = [col for col in cur]
+    """Return a list of all passenger names"""
+    # Query all passengers
+    results = session.query(School.name, School.type, School.enrollment, School.teachercount).all()
+
+    session.close()
+
+    # Convert list of tuples into normal list
+    all_schools = []
+    for name, type, enrollment, teachercount in results:
+        school_dict = {}
+        school_dict["name"] = name
+        school_dict["type"] = type
+        school_dict["enrollment"] = enrollment
+        school_dict["teachercount"] = teachercount
+        all_schools.append(school_dict)
+
+    return jsonify(all_schools)
+
+# @app.route('/data')
+# def send_data():
+#     con = psycopg2.connect("host='ec2-54-205-187-125.compute-1.amazonaws.com' dbname='d8uhbccr3c2pvb' user='bwrtaugijyfgyd' password='2a00951144d14d957fe21c02613f65b2083e6f64f7cc32c28d784c5e8b8960dc'")  
+#     cur = con.cursor()
+#     cur.execute("""select * from location""")
+#     results = [col for col in cur]
     # street = [result[0] for result in results]
     # lat = [result[1] for result in results]
     # lon = [result[2] for result in results]
@@ -68,8 +106,8 @@ def send_data():
     #     "lat": lat,
     #     "lon": lon
     # }]
-    cur.close()
-    return jsonify(results)
+    # cur.close()
+    # return jsonify(results)
 
 # @app.route("/api/pals")
 # def pals():
