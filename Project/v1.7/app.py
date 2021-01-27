@@ -28,7 +28,7 @@ Base.prepare(engine, reflect=True)
 # Save reference to the table
 School = Base.classes.schooltable
 # System = Base.classes.system
-# Location = Base.classes.location
+Location = Base.classes.location
 
 #################################################
 # Flask Setup
@@ -76,18 +76,20 @@ def location():
 
     """Return a list of all passenger names"""
     # Query all passengers
-    results = session.query(School.name, School.type, School.enrollment, School.teachercount).all()
+    results = session.query(School.name, School.type, School.enrollment, School.teachercount, Location.latitude, Location.longitude).all()
 
     session.close()
 
     # Convert list of tuples into normal list
     all_schools = []
-    for name, type, enrollment, teachercount in results:
+    for name, type, enrollment, teachercount, latitude, longitude in results:
         school_dict = {}
         school_dict["name"] = name
         school_dict["type"] = type
         school_dict["enrollment"] = enrollment
         school_dict["teachercount"] = teachercount
+        school_dict["lat"] = latitude
+        school_dict["lng"] = longitude
         all_schools.append(school_dict)
 
     return jsonify(all_schools)
