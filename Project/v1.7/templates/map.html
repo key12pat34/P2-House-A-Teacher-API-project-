@@ -93,6 +93,7 @@
                                             </ul>
                                         
                                         <button id="filter-btn" type="button" class="btn btn-default">Filter Homes</button></div>
+                                        <button id="clear-btn" type="button" class="btn btn-default">Clear Markers</button></div>
                                     </form>
                                     </div>
                                 </div>
@@ -138,6 +139,8 @@
                 );
                 baseLayer.addTo(map);
             };
+
+
             // Realtor API Query
             // Realtor API jQuery Code provided code: https://rapidapi.com/apidojo/api/realtor?endpoint=apiendpoint_e259775d-d98e-479f-8440-206d6d4fa892   
 
@@ -145,8 +148,17 @@
             var button = d3.select("#filter-btn");
             button.on("click", runEnter);
 
+            var clear = d3.select("#clear-btn")
+            clear.on("click", runClear);
+
+            function runClear() {
+                //Clear current markers
+                location.reload();
+            };
+
             //Start Filter Function
             function runEnter() {
+
             //Assign variables based on the filter form
             let selectedcity = d3.select("#city").property("value")
             let limit = d3.select("#limit").property("value")
@@ -196,7 +208,7 @@
                 let state = property.address.state
                 let zip = property.address.postal_code
             //Append coordinates to map and assign property variables in the pop up
-                L.marker(location)
+                var marker = L.marker(location)
                 .bindPopup("<h1>" + street + "</h1> <hr> <h3>" + city + "," + state + " " + zip + 
                             "</h3> <br> <h4>Beds: " + bedcount + "<br>Baths: " + bathcount + 
                             "<br>Price: " + pricecount + '<br><a href="' + weburl + '">See on Realtor.com</a>')
