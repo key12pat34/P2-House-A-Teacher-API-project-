@@ -44,21 +44,19 @@ html {
   padding:10;
 }
 
-/* Code provided by codepen.io for Parallax Skyline */
-canvas {
-  background: 
-    linear-gradient(
-      hsl(200, 50%, 80%) 0%, 
-      hsl(200, 30%, 95%) 75%)
-  ;
-  display: block;
+/* Code provided by codepen.io for The Great Fall - https://codepen.io/cjgammon/pen/djcko */
+@import url(https://fonts.googleapis.com/css?family=Lobster);
+body {
+    background-color: #000;
+    overflow: hidden;
 }
 
-div {
-  height: 100%;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: url(https://jackrugile.com/images/misc/skyline-texture.png);
+#myCanvas {
+    background-color: #001530;
+    display: block;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
 }
