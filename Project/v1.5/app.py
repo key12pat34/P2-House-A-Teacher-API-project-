@@ -30,11 +30,11 @@ app = Flask(__name__)
 # location = create_classes(db)
 
 # create route that renders homepage.html template
-@app.route("/")
-def home():
-    return render_template("homepage.html")
+# @app.route("/")
+# def home():
+#     return render_template("homepage.html")
 
-@app.route("/map")
+@app.route("/")
 def map():
     return render_template("map.html")
 
@@ -58,7 +58,7 @@ def map():
 def send_data():
     con = psycopg2.connect("host='ec2-54-205-187-125.compute-1.amazonaws.com' dbname='d8uhbccr3c2pvb' user='bwrtaugijyfgyd' password='2a00951144d14d957fe21c02613f65b2083e6f64f7cc32c28d784c5e8b8960dc'")  
     cur = con.cursor()
-    cur.execute("""select street, latitude, longitude from location""")
+    cur.execute("""select * from location""")
     results = [col for col in cur]
     # street = [result[0] for result in results]
     # lat = [result[1] for result in results]
