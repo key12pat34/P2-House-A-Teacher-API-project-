@@ -11,11 +11,11 @@ cur.execute("""
     "phone" VARCHAR   NOT NULL,
     "enrollment" FLOAT   NOT NULL,
     "teachercount" FLOAT   NOT NULL,
-    "% of Teachers <1 of experience" FLOAT   NOT NULL,
-    "% of teachers <10 years of experience" FLOAT   NOT NULL,
-    "% of teachers 11-20 years of experience" FLOAT   NOT NULL,
-    "% of teachers 21-30 years of experience" FLOAT   NOT NULL,
-    "% of teachers 30+ years of experience" FLOAT   NOT NULL,
+    "%_of_Teachers_<1ofexperience" FLOAT   NOT NULL,
+    "%_of_teachers_<10yearsofexperience" FLOAT   NOT NULL,
+    "%_of_teachers_11-20yearsofexperience" FLOAT   NOT NULL,
+    "%_of_teachers_21-30yearsofexperience" FLOAT   NOT NULL,
+    "%_of_teachers_30+yearsofexperience" FLOAT   NOT NULL,
     CONSTRAINT "pk_schooltable" PRIMARY KEY ( "_id" )
     )""")
 cur.execute("""
@@ -29,7 +29,7 @@ cur.execute(
     """
     CREATE TABLE IF NOT EXISTS "system" (
     "systemid" int   NOT NULL UNIQUE,
-    "School System Name" VARCHAR   NOT NULL
+    "school_system" VARCHAR   NOT NULL
     )""")
 cur.execute(
     """
