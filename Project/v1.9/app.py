@@ -26,9 +26,9 @@ Base = automap_base()
 Base.prepare(engine, reflect=True)
 
 # Save reference to the table
-School = Base.classes.schooltable
+# School = Base.classes.schooltable
 # System = Base.classes.system
-Location = Base.classes.location
+# Location = Base.classes.location
 # Combined Table
 Combined = Base.classes.combinedata
 
