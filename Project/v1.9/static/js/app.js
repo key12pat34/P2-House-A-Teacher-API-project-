@@ -29,21 +29,26 @@ function addBaseLayer(map) {
   baseLayer.addTo(map);
 }
 
+// L.marker([33.776108, -84.39753]).addTo(map);
+  //     // .bindPopup("<h1>" + data[i][0] + "</h1> <hr> <h3>City: " + data[i][4] + "</h3>")
+
+
 // create markers for schools
-d3.json("/api/location", function (data) {
-  console.log(data.lat)
-  console.log(data.lon)
-  // for (var i = 0; i < data.length; i++) {
-  //   let dataquery = data[i];
-  //   let lat = dataquery.lat;
-  //   let lng = dataquery.lng;
-  //   let schoollocation = [lat, lng];
-  //   console.log(schoollocation);
-  //   L.marker(schoollocation)
-  //     .bindPopup("<h1>" + data[i][0] + "</h1> <hr> <h3>City: " + data[i][4] + "</h3>")
-  //     .addTo(map);
-  })
-// });
+d3.json("/api/location").then( function(data) {
+  console.log(data.latitude);
+  console.log(data.longitude);
+  for (var i = 0; i < data.length; i++) {
+    let dataquery = data[i];
+    let lat = dataquery.latitude;
+    let lng = dataquery.longitude;
+    let schoollocation = [lat, lng];
+    console.log(schoollocation);
+    L.marker(schoollocation)
+      // .bindPopup("<h1>" + data[i][0] + "</h1> <hr> <h3>City: " + data[i][4] + "</h3>")
+      .addTo(map);
+  }
+});
+
 // Realtor API Query
 // Realtor API jQuery Code provided code: https://rapidapi.com/apidojo/api/realtor?endpoint=apiendpoint_e259775d-d98e-479f-8440-206d6d4fa892
 

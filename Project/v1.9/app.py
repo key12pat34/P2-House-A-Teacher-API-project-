@@ -26,11 +26,11 @@ Base = automap_base()
 Base.prepare(engine, reflect=True)
 
 # Save reference to the table
-# School = Base.classes.schooltable
+School = Base.classes.schooltable
 # System = Base.classes.system
 # Location = Base.classes.location
-# Combined Table
-Combined = Base.classes.combinedata
+# Marker Table
+Marker = Base.classes.marker_data
 
 #################################################
 # Flask Setup
@@ -75,7 +75,8 @@ def map():
 def location():
     # Create our session (link) from Python to the DB
     session = Session(engine)
-    results = session.query(Combined.name, Combined.enrollment, Combined.teachercount, Combined.schooltype, Combined.latitude, Combined.longitude).all()
+    results = session.query(Marker.name, Marker.enrollment, Marker.teachercount, Marker.schooltype, Marker.latitude, Marker.longitude).all()
+    # results = session.query(School._id, School.name).all()
     session.close()
     
     # Convert list of tuples into normal lists
@@ -92,14 +93,13 @@ def location():
         all_schools.append(school_dict)
     return jsonify(all_schools)
 
-    # all_school_locations = []
-    # for _id, latitude, longitude in locationresults:
+    # all_schools = []
+    # for _id, name in results:
     #     location_dict = {}
     #     location_dict["_id"] = _id
-    #     location_dict["latitude"] = latitude
-    #     location_dict["longitude"] = longitude
-    #     all_school_locations.append(location_dict)
-    # return jsonify(all_school_locations)
+    #     location_dict["latitude"] = name
+    #     all_schools.append(location_dict)
+    # return jsonify(all_schools)
 
     # mergedtable = [{**d1, **d2} for d1, d2 in zip(all_schools, all_school_locations)]
     # print(mergedtable)
