@@ -36,6 +36,7 @@ Marker = Base.classes.marker_data
 # Flask Setup
 #################################################
 app = Flask(__name__)
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 # from flask_sqlalchemy import SQLAlchemy
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or "postgres://bwrtaugijyfgyd:2a00951144d14d957fe21c02613f65b2083e6f64f7cc32c28d784c5e8b8960dc@ec2-54-205-187-125.compute-1.amazonaws.com:5432/d8uhbccr3c2pvb"
@@ -149,4 +150,4 @@ def location():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

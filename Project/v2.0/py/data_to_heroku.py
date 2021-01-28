@@ -7,7 +7,7 @@ cur.execute("""
     "_id" int   NOT NULL UNIQUE,
     "name" VARCHAR   NOT NULL,
     "systemid" int   NOT NULL,
-    "type" VARCHAR   NOT NULL,
+    "schooltype" VARCHAR   NOT NULL,
     "phone" VARCHAR   NOT NULL,
     "enrollment" FLOAT   NOT NULL,
     "teachercount" FLOAT   NOT NULL,
@@ -44,6 +44,18 @@ cur.execute(
     CONSTRAINT "pk_location" PRIMARY KEY (
         "_id"
      ))""")
+cur.execute(
+    """
+    CREATE TABLE IF NOT EXISTS "marker_data" (
+        SELECT schooltable._id, schooltable.name, schooltable.enrollment, 
+        schooltable.teachercount, schooltable.schooltype, location.latitude, 
+        location.longitude)
+    FROM schooltable
+    FULL OUTER JOIN location ON schooltable._id=location._id
+    ORDER BY schooltable._id
+    PRIMARY KEY (_id)
+    """)
+
 # cur.execute(
 #     """
 #     ALTER TABLE "principal" ADD CONSTRAINT "fk_principal__id" FOREIGN KEY("_id")
