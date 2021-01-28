@@ -1,9 +1,7 @@
-console.log("hello");
 // // Step 1
 let map = createMap();
 addBaseLayer(map);
 // createBorough(map);
-console.log(L);
 function createMap() {
   // Creating map object
   let map = L.map("map", {
@@ -33,17 +31,19 @@ function addBaseLayer(map) {
 
 // create markers for schools
 d3.json("/api/location", function (data) {
-  for (var i = 0; i < data.length; i++) {
-    let dataquery = data[i];
-    let lat = dataquery.lat;
-    let lng = dataquery.lng;
-    let schoollocation = [lat, lng];
-    console.log(schoollocation);
-    L.marker(schoollocation)
-      // .bindPopup("<h1>" + data[i][0] + "</h1> <hr> <h3>City: " + data[i][4] + "</h3>")
-      .addTo(map);
-  }
-});
+  console.log(data.lat)
+  console.log(data.lon)
+  // for (var i = 0; i < data.length; i++) {
+  //   let dataquery = data[i];
+  //   let lat = dataquery.lat;
+  //   let lng = dataquery.lng;
+  //   let schoollocation = [lat, lng];
+  //   console.log(schoollocation);
+  //   L.marker(schoollocation)
+  //     .bindPopup("<h1>" + data[i][0] + "</h1> <hr> <h3>City: " + data[i][4] + "</h3>")
+  //     .addTo(map);
+  })
+// });
 // Realtor API Query
 // Realtor API jQuery Code provided code: https://rapidapi.com/apidojo/api/realtor?endpoint=apiendpoint_e259775d-d98e-479f-8440-206d6d4fa892
 
@@ -111,15 +111,15 @@ function runEnter() {
       //Append coordinates to map and assign property variables in the pop up
       var marker = L.marker(location)
         .bindPopup(
-          "<h1>" +
+          "<h4>" +
             street +
-            "</h1> <hr> <h3>" +
+            "</h4> <hr> <h4>" +
             city +
             "," +
             state +
             " " +
             zip +
-            "</h3> <br> <h4>Beds: " +
+            "</h4> <br> <h6>Beds: " +
             bedcount +
             "<br>Baths: " +
             bathcount +
@@ -127,7 +127,7 @@ function runEnter() {
             pricecount +
             '<br><a href="' +
             weburl +
-            '">See on Realtor.com</a>'
+            '">See on Realtor.com</a></h6>'
         )
         .addTo(map);
     }

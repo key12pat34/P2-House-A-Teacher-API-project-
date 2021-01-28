@@ -29,6 +29,8 @@ Base.prepare(engine, reflect=True)
 School = Base.classes.schooltable
 # System = Base.classes.system
 Location = Base.classes.location
+# Combined Table
+Combined = Base.classes.combinedata
 
 #################################################
 # Flask Setup
@@ -73,26 +75,34 @@ def map():
 def location():
     # Create our session (link) from Python to the DB
     session = Session(engine)
-
-    """Return a list of all passenger names"""
-    # Query all passengers
-    results = session.query(School.name, School.type, School.enrollment, School.teachercount, Location.latitude, Location.longitude).all()
-
+    results = session.query(Combined.name, Combined.enrollment, Combined.teachercount, Combined.schooltype, Combined.latitude, Combined.longitude).all()
     session.close()
-
-    # Convert list of tuples into normal list
+    
+    # Convert list of tuples into normal lists
     all_schools = []
-    for name, type, enrollment, teachercount, latitude, longitude in results:
+    
+    for name, enrollment, teachercount, schooltype, latitude, longitude in results:
         school_dict = {}
         school_dict["name"] = name
-        school_dict["type"] = type
         school_dict["enrollment"] = enrollment
         school_dict["teachercount"] = teachercount
-        school_dict["lat"] = latitude
-        school_dict["lng"] = longitude
+        school_dict["type"] = schooltype
+        school_dict["latitude"] = latitude
+        school_dict["longitude"] = longitude
         all_schools.append(school_dict)
-
     return jsonify(all_schools)
+
+    # all_school_locations = []
+    # for _id, latitude, longitude in locationresults:
+    #     location_dict = {}
+    #     location_dict["_id"] = _id
+    #     location_dict["latitude"] = latitude
+    #     location_dict["longitude"] = longitude
+    #     all_school_locations.append(location_dict)
+    # return jsonify(all_school_locations)
+
+    # mergedtable = [{**d1, **d2} for d1, d2 in zip(all_schools, all_school_locations)]
+    # print(mergedtable)
 
 # @app.route('/data')
 # def send_data():
