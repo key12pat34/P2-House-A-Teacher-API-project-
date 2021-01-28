@@ -29,24 +29,20 @@ function addBaseLayer(map) {
   baseLayer.addTo(map);
 }
 
-// L.marker([33.776108, -84.39753]).addTo(map);
-  //     // .bindPopup("<h1>" + data[i][0] + "</h1> <hr> <h3>City: " + data[i][4] + "</h3>")
-
-
 // create markers for schools
-d3.json("/api/location").then( function(data) {
-  console.log(data.latitude);
-  console.log(data.longitude);
-  for (var i = 0; i < data.length; i++) {
-    let dataquery = data[i];
-    let lat = dataquery.latitude;
-    let lng = dataquery.longitude;
-    let schoollocation = [lat, lng];
-    console.log(schoollocation);
-    L.marker(schoollocation)
-      // .bindPopup("<h1>" + data[i][0] + "</h1> <hr> <h3>City: " + data[i][4] + "</h3>")
-      .addTo(map);
-  }
+d3.json("/api").then(function(data) {
+  console.log(data);
+  // console.log(data.longitude);
+  // for (var i = 0; i < data.length; i++) {
+  //   let dataquery = data[i];
+  //   let lat = dataquery.latitude;
+  //   let lng = dataquery.longitude;
+  //   let schoollocation = [lat, lng];
+  //   console.log(schoollocation);
+  //   L.marker(schoollocation)
+  //     // .bindPopup("<h1>" + data[i][0] + "</h1> <hr> <h3>City: " + data[i][4] + "</h3>")
+  //     .addTo(map);
+  // }
 });
 
 // Realtor API Query

@@ -71,7 +71,7 @@ def map():
 
 #     return render_template("form.html")
 
-@app.route("/api/location")
+@app.route("/api")
 def location():
     # Create our session (link) from Python to the DB
     session = Session(engine)

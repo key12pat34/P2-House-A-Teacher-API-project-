@@ -1,3 +1,12 @@
+body h1{text-align: center;
+  padding-top: 20px;
+  padding-bottom: 50px;}
+
+body h1:after{content:' ';
+  display:block;
+  border:2px solid grey;
+  } 
+  
 /* remove default margin and padding from body */
 body {
   padding: 0;
@@ -32,7 +41,7 @@ input[type=radio] {
 #map,
 body,
 html {
-  height: 80%;
+  height: 90%;
   width: 90%;
 }
 
@@ -45,7 +54,7 @@ html {
 }
 
 /* Code provided by codepen.io for The Great Fall - https://codepen.io/cjgammon/pen/djcko */
-@import url(https://fonts.googleapis.com/css?family=Lobster);
+/* @import url(https://fonts.googleapis.com/css?family=Lobster);
 body {
     background-color: #000;
     overflow: hidden;
@@ -59,4 +68,4 @@ body {
     top: 0;
     left: 0;
     z-index: -1;
-}
+} */
