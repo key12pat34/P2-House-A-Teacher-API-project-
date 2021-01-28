@@ -30,18 +30,44 @@ function addBaseLayer(map) {
 }
 
 // create markers for schools
+<<<<<<< HEAD
 d3.json("/api").then(function (data) {
   // console.log(data);
   // console.log(data.longitude);
+=======
+d3.json("/api").then(function(data) {
+  console.log(data);
+  console.log(data.longitude);
+>>>>>>> 661b6507849b1a80bb046bc8e05ad142da7af4d4
   for (var i = 0; i < data.length; i++) {
     let dataquery = data[i];
     let lat = dataquery.latitude;
     let lng = dataquery.longitude;
     let schoollocation = [lat, lng];
+<<<<<<< HEAD
     let schoolname = dataquery.name;
     // console.log(schoollocation);
     L.marker(schoollocation)
       .bindPopup("<h1>" + schoolname + "</h1>")
+=======
+    console.log(schoollocation);
+    L.circle(schoollocation, {
+      color: "red",
+      fillColor: "#f03",
+      fillOpacity: 0.5,
+      radius: 500
+    })
+      .bindPopup(
+        "<h4>" +
+            data[i].name +
+            "</h4> <hr> <h4>" +
+            data[i].type +
+            "</h4> <br> <h6>Enrollment: " +
+            data[i].enrollment +
+            "<br>Teacher Count: " +
+            data[i].teachercount
+            )
+>>>>>>> 661b6507849b1a80bb046bc8e05ad142da7af4d4
       .addTo(map);
   }
 });
